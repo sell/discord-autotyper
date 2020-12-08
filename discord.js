@@ -79,12 +79,13 @@ const discord = {
 
     /**
      * Enter server id and channel urk
-     * @param {string} serverID
-     * @param {string} channelID
+     * @param { string } serverID
+     * @param { string } channelID
+     * @param { number } delay
      * @return {Promise<void>}
      */
 
-    likeChannelProcess: async (serverID, channelID) => {
+    likeChannelProcess: async (serverID, channelID, delay= 1) => {
             types('string', serverID);
             types('string', channelID);
             const CHANNELS_URL = `https://discord.com/channels/${serverID}/${channelID}`
@@ -124,7 +125,7 @@ const discord = {
 
             // change the first number for minutes
             // 3 * 60 * 1000 = 180000ms === 3 minutes
-            setInterval(randomWord, .30 * 60 * 1000)
+            setInterval(randomWord, delay * 60 * 1000)
 
     }
 }
