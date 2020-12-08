@@ -1,4 +1,5 @@
 const puppeteer = require('puppeteer');
+const {types} = require("./utils/types");
 
 // list all the words here, will pick them randomly, doesn't matter how many!
 const words = [
@@ -12,7 +13,7 @@ const words = [
 let logCount = 0;
 
 const BASE_URL = 'https://discord.com';
-const CHANNELS_URL = `https://discord.com/channels/734363138832728074/734363141139333153` // change this & enter the channel url
+// change this & enter the channel url
 const discord = {
     browser: null,
     page: null,
@@ -31,17 +32,23 @@ const discord = {
 
     },
 
+    /**
+     * username and password
+     * @param {string} username
+     * @param {string} password
+     * @return {Promise<void>}
+     */
+
     login: async (username, password) => {
 
         await discord.page.goto(BASE_URL, {
             waitUntil: 'networkidle2'
         })
 
-        let loginButton = await discord.page.$x('//a[contains(text(), "Login")]');
-
+        let loginButton = await discord.page.$x('//a[contains(., "Login")]');
+        await discord.page.waitFor(5000)
         /* Click on login url button */
-
-        await loginButton[0].click();
+        await loginButton[1].click();
 
         await discord.page.waitForNavigation({
             waitUntil: 'networkidle2'
@@ -70,8 +77,17 @@ const discord = {
     },
 
 
+    /**
+     * Enter server id and channel urk
+     * @param {string} serverID
+     * @param {string} channelID
+     * @return {Promise<void>}
+     */
 
-    likeChannelProcess: async () => {
+    likeChannelProcess: async (serverID, channelID) => {
+            types('string', serverID);
+            types('string', channelID);
+            const CHANNELS_URL = `https://discord.com/channels/${serverID}/${channelID}`
 
             await discord.page.goto(CHANNELS_URL, {
 
@@ -108,7 +124,7 @@ const discord = {
 
             // change the first number for minutes
             // 3 * 60 * 1000 = 180000ms === 3 minutes
-            setInterval(randomWord, 3 * 60 * 1000)
+            setInterval(randomWord, .30 * 60 * 1000)
 
     }
 }
