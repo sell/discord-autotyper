@@ -91,7 +91,7 @@ const discord = {
             await discord.page.waitFor(10000);
 
             async function initalStart () {
-                await discord.page.type('span[data-slate-node="text"]', "auto typer started.", {
+                await discord.page.type('span[data-slate-node="text"]', "!rank", {
                     delay: 100
                 });
 
