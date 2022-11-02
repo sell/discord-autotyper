@@ -3,12 +3,7 @@ const {types} = require("./utils/types");
 
 // list all the words here, will pick them randomly, doesn't matter how many!
 const words = [
-    "1",
-    "2",
-    "3",
-    "4",
-    "5",
-    "6",
+    "Mauris", "vitae", "vestibulum", "justo.", "Etiam", "id", "velit", "libero.", "Quisque", "et", "facilisis", "elit.", "Curabitur", "mattis", "quam", "eu", "tincidunt", "interdum.", "Morbi", "porta", "pharetra", "metus,", "cursus", "vestibulum", "diam", "volutpat", "vel.", "Aenean", "facilisis", "metus", "vel", "nisl", "sodales,", "at", "pretium", "lectus", "convallis.", "Vivamus", "eu", "accumsan", "augue."
 ]
 let logCount = 0;
 
@@ -112,7 +107,7 @@ const discord = {
             async function randomWord () {
                 const random = words[Math.floor(Math.random() * words.length)]
                 await discord.page.type('span[data-slate-node="text"]', random, {
-                    delay: 100
+                    delay: 50
                 });
 
                 await discord.page.keyboard.press('Enter')
@@ -124,14 +119,18 @@ const discord = {
 
                 // adding deleting spam chats
                 await discord.page.keyboard.press('ArrowUp', {
-                    delay: 2000
+                    delay: 100
                 })
                 await discord.page.keyboard.down('ControlLeft');
                 await discord.page.keyboard.down('A');
                 await discord.page.keyboard.up('A');
                 await discord.page.keyboard.up('ControlLeft');
-                await discord.page.keyboard.press('Backspace')
-                await discord.page.keyboard.press('Enter')
+                await discord.page.keyboard.press('Backspace', {
+                    delay: 100
+                })
+                await discord.page.keyboard.press('Enter', {
+                    delay: 200
+                })
                 await discord.page.keyboard.press('Enter')
             }
 
