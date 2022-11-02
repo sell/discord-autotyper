@@ -3,12 +3,12 @@ const {types} = require("./utils/types");
 
 // list all the words here, will pick them randomly, doesn't matter how many!
 const words = [
-    "hey",
-    "hello",
-    "test",
-    "sell",
-    "jay",
-    "javascript",
+    "1",
+    "2",
+    "3",
+    "4",
+    "5",
+    "6",
 ]
 let logCount = 0;
 
@@ -68,7 +68,7 @@ const discord = {
 
         /* clicking on login button */
 
-        loginButton = await discord.page.$x('//div[contains(text(), "Login")]');
+        loginButton = await discord.page.$x('//div[contains(text(), "Log In")]');
         await loginButton[0].click();
 
         await discord.page.waitFor(10000);
@@ -96,7 +96,7 @@ const discord = {
             await discord.page.waitFor(10000);
 
             async function initalStart () {
-                await discord.page.type('span[data-slate-object="text"]', "auto typer started.", {
+                await discord.page.type('span[data-slate-node="text"]', "start testing.", {
                     delay: 100
                 });
 
@@ -111,7 +111,7 @@ const discord = {
 
             async function randomWord () {
                 const random = words[Math.floor(Math.random() * words.length)]
-                await discord.page.type('span[data-slate-object="text"]', random, {
+                await discord.page.type('span[data-slate-node="text"]', random, {
                     delay: 100
                 });
 
@@ -121,11 +121,25 @@ const discord = {
 
                 // this logs the time the message was sent at and the total message count
                 console.debug('Message sent: ' + random + ' , at: ' + new Date() + ', Message Count: ' + logCount )
+
+                // adding deleting spam chats
+                await discord.page.keyboard.press('ArrowUp', {
+                    delay: 2000
+                })
+                await discord.page.keyboard.down('ControlLeft');
+                await discord.page.keyboard.down('A');
+                await discord.page.keyboard.up('A');
+                await discord.page.keyboard.up('ControlLeft');
+                await discord.page.keyboard.press('Backspace')
+                await discord.page.keyboard.press('Enter')
+                await discord.page.keyboard.press('Enter')
             }
 
             // change the first number for minutes
             // 3 * 60 * 1000 = 180000ms === 3 minutes
-            setInterval(randomWord, delay * 60 * 1000)
+            // setInterval(randomWord, delay * 60 * 1000)
+
+            setInterval(randomWord, 5000) // 5 seconds
 
     }
 }
