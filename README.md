@@ -4,13 +4,11 @@ made with js 💛 && star repo 🌟 if you like
 
 Full example of it logging it and running in background!
 
-<img alt="example" src="https://jayson.codes/DZKjZ2mWp5.gif"/>
 
 runs in background on chromium, so you can use discord app and it won't interrupt with your typing! 
 
 It logs last message it sent and at what time, also logs the time it was sent at.
 
-<img alt="example" src="https://jayson.codes/DocfdmFjsM.png" />
 
 After Installation:
 
@@ -31,4 +29,3 @@ Then run it
 ```
 node .
 ```
-<img alt="example" src="https://jayson.codes/L3ReU9oqgR.gif"/>
