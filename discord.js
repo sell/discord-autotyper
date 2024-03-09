@@ -3,12 +3,7 @@ const {types} = require("./utils/types");
 
 // list all the words here, will pick them randomly, doesn't matter how many!
 const words = [
-    "hey",
-    "hello",
-    "test",
-    "sell",
-    "jay",
-    "javascript",
+    "!rank",
 ]
 let logCount = 0;
 
@@ -96,7 +91,7 @@ const discord = {
             await discord.page.waitFor(10000);
 
             async function initalStart () {
-                await discord.page.type('span[data-slate-object="text"]', "auto typer started.", {
+                await discord.page.type('span[data-slate-node="text"]', "!rank", {
                     delay: 100
                 });
 
@@ -111,7 +106,7 @@ const discord = {
 
             async function randomWord () {
                 const random = words[Math.floor(Math.random() * words.length)]
-                await discord.page.type('span[data-slate-object="text"]', random, {
+                await discord.page.type('span[data-slate-node="text"]', random, {
                     delay: 100
                 });
 
